@@ -4,6 +4,7 @@
   "description": "This is hello react",
   "main": "index.js",
   "scripts": {
+    "start": "parcel index.html",
     "test": "jest"
   },
   "author": "prithviraj",
