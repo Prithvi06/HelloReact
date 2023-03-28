@@ -1,6 +1,6 @@
 import React from "react"
-import reactDom from "react-dom"
-import header_logo from "header_logo.png"
+import ReactDOM from 'react-dom/client';
+import header_logo from "./header_logo.png"
 
 const Header = () => {
     return (
@@ -26,7 +26,10 @@ const Header = () => {
 const AppLayout = () => {
     return (
         <div className="app">
-            <Header/>
+            <Header />
         </div>
-    )
-}
+    );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
