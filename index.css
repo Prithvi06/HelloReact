@@ -31,3 +31,33 @@ body{
 .nav-items ul li {
     list-style: none;
 }
+
+.body{
+    padding: 20px 0;
+}
+
+.res-container{
+    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.res-logo{
+    width: 100%;
+}
+
+.res-card{
+    border-radius: 6px;
+    padding: 10px;
+    background-color: rgb(245, 198, 89);
+    width: 200px;
+    height: 250px;
+}
+
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
