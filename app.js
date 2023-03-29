@@ -54,6 +54,20 @@ const Body = () => {
     )
 }
 
+const Footer = () => {
+    return (
+        <div className="footer">
+            <ul className="footer-items">
+                <li>link1</li>
+                <li>link1</li>
+                <li>link1</li>
+                <li>link1</li>
+                <li>link1</li>
+            </ul>
+        </div>
+    )
+}
+
 const AppLayout = () => {
     return (
         <div className="app">
