@@ -61,3 +61,21 @@ body{
     border: 1px solid black;
     cursor: pointer;
 }
+
+.footer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-items{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.footer-items > li{
+    list-style-type: none;
+    font-weight: bold;
+}
