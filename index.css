@@ -79,3 +79,8 @@ body{
     list-style-type: none;
     font-weight: bold;
 }
+
+.filter-btn{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
