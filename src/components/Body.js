@@ -1,32 +1,9 @@
 import RestaurentCard from "./RestaurentCard"
+import { useState } from "react"
+import restaurentDataList from "../utils/mockData";
 
 const Body = () => {
-    let RestaurentData = [
-        {
-            "id": 1,
-            "resName": "Meghana Food",
-            "cuisine": "Biryani, North Indian",
-            "rating": "4.4"
-        },
-        {
-            "id": 2,
-            "resName": "KFC Food",
-            "cuisine": "Biryani, North Indian",
-            "rating": "4.5"
-        },
-        {
-            "id": 3,
-            "resName": "Apna Food",
-            "cuisine": "Biryani, North Indian",
-            "rating": "4.4"
-        },
-        {
-            "id": 4,
-            "resName": "Punjabi Food",
-            "cuisine": "Biryani, North Indian",
-            "rating": "4.5"
-        }
-    ]
+    const [restaurentData, setRestaurentData] = useState(restaurentDataList);
 
     return (
         <div className="body">
@@ -34,14 +11,14 @@ const Body = () => {
                 <button 
                     className="filter-btn" 
                     onClick={() => {
-                        RestaurentData = RestaurentData.filter((res) => res.rating >= 4.5)
+                        setRestaurentData(restaurentData.filter((res) => res.rating >= 4.5))
                     }}>
                     Top Rated Restaurents
                 </button>
             </div>
             <div className="res-container">
             {
-                RestaurentData.map((data) => (
+                restaurentData.map((data) => (
                 <RestaurentCard key={data.id} resData={data} />
                 ))
             }    
