@@ -22,6 +22,12 @@ const restaurentDataList = [
         "resName": "Punjabi Food",
         "cuisine": "Biryani, North Indian",
         "rating": "4.5"
+    },
+    {
+        "id": 4,
+        "resName": "GuruKripa Food",
+        "cuisine": "Paneer, North Indian",
+        "rating": "4.5"
     }
 ]
 
