@@ -24,9 +24,15 @@ const restaurentDataList = [
         "rating": "4.5"
     },
     {
-        "id": 4,
+        "id": 5,
         "resName": "GuruKripa Food",
         "cuisine": "Paneer, North Indian",
+        "rating": "4.5"
+    },
+    {
+        "id": 6,
+        "resName": "Sainath Food",
+        "cuisine": "Chole bhatore, North Indian",
         "rating": "4.5"
     }
 ]
