@@ -1,8 +1,8 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
    box-sizing: border-box;
-}
+} */
 
 body{
     max-width: 1500px;
@@ -36,7 +36,7 @@ body{
     padding: 20px 0;
 }
 
-.res-container{
+.res-container, .shimmer-container{
     border: 1px solid black;
     padding: 10px;
     display: flex;
@@ -53,6 +53,14 @@ body{
     border-radius: 6px;
     padding: 10px;
     background-color: rgb(245, 198, 89);
+    width: 200px;
+    min-height: 250px;
+}
+
+.shimmer-cards{
+    border-radius: 6px;
+    padding: 10px;
+    background-color: rgb(220, 220, 220);
     width: 200px;
     height: 250px;
 }
@@ -83,7 +91,18 @@ body{
     font-weight: bold;
 }
 
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .filter-btn{
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.login-btn{
+    padding: 5 15px;
+    cursor: pointer;
 }
