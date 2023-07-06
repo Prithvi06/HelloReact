@@ -3,21 +3,19 @@ import { useState, useEffect } from "react"
 // import restaurentDataList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
-    console.log("Body")
     const [restaurentData, setRestaurentData] = useState([]);
     const [filterRestaurent, setFilterRestaurent] = useState([])
     const [searchText, setSearchText] = useState("")
     
     
     useEffect(()=>{
-        console.log("usereffect")
         fetchData();
     }, [])
 
     const fetchData = async() => {
-        console.log("fetching data")
         const data = await fetch(
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&page_type=DESKTOP_WEB_LISTING"
         );
@@ -30,6 +28,13 @@ const Body = () => {
     //     return <Shimmer />
     // }
 
+    const onlineStatus = useOnlineStatus()
+
+    if (onlineStatus === false) 
+        return (
+            <h1>You are offline, please check your internet connection</h1>
+        )
+
     return restaurentData?.length === 0 ? (
         <Shimmer />
     ) : (
@@ -41,7 +46,6 @@ const Body = () => {
                     onClick={() => {
                         const filterRes = restaurentData.filter((res) => res.data.name.includes(searchText));
                         setFilterRestaurent(filterRes);
-                        console.log(filterRestaurent)
                         }} >Search</button>
                 </div>
                 <button 
@@ -53,7 +57,6 @@ const Body = () => {
                 </button>
             </div>
             <div className="res-container">
-            {console.log("filterRestaurent", filterRestaurent)}
             {  
                 filterRestaurent.map((res) => (
                 <Link to={"/restaurent/" + res.data.id} key={res.data.id}>
