@@ -1,4 +1,4 @@
-import RestaurentCard from "./RestaurentCard"
+import RestaurentCard, {promotedRestaurentCard} from "./RestaurentCard"
 import { useState, useEffect } from "react"
 // import restaurentDataList from "../utils/mockData";
 import Shimmer from "./Shimmer";
@@ -29,6 +29,7 @@ const Body = () => {
     // }
 
     const onlineStatus = useOnlineStatus()
+    const RestaurentCardPromoted = promotedRestaurentCard(RestaurentCard)
 
     if (onlineStatus === false) 
         return (
@@ -58,9 +59,9 @@ const Body = () => {
             </div>
             <div className="res-container">
             {  
-                filterRestaurent.map((res) => (
-                <Link to={"/restaurent/" + res.data.id} key={res.data.id}>
-                    <RestaurentCard resData={res} />
+                filterRestaurent.map((restaurent) => (
+                <Link to={"/restaurent/" + restaurent.data.id} key={restaurent.data.id}>
+                    { restaurent.data.promoted ? <RestaurentCardPromoted resData={restaurent}/> : <RestaurentCard resData={restaurent} />}
                 </Link>
                 ))
             }    
