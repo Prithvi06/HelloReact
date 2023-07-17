@@ -3,6 +3,7 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { CARD_MENU_URL } from "../utils/constants";
 import useRestaurentMenu from "../utils/userRestaurentMenu";
+import Category from "./Category";
 
 const RestaurentMenu = () => {
     // const [resInfo, setResInfo] = useState([])
@@ -27,22 +28,20 @@ const RestaurentMenu = () => {
         return <Shimmer />
     }
     const {name, cuisines, costForTwoMessage} = resInfo[0]?.card?.card?.info
-    const {itemCards} = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-
+    // const {itemCards} = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+    const category = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    const categoryList = category.filter((c) => (c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ))
+    console.log("Categorylist", categoryList)
     return (
-        <div className="menu">
-            <h1>{name}</h1>
-            <p>{cuisines.join(", ")} - {costForTwoMessage}</p>
-            <h2>Menu</h2>
-            <ul>
-                {
-                    itemCards.map((item) => (
-                        <li key={item.card.info.id}>
-                            {item.card.info.name} - {"Rs."} {item.card.info.price /100}
-                        </li>
-                    ))
-                }
-            </ul>
+        <div className="text-center">
+            <h1 className="text-lg font-bold my-5">{name}</h1>
+            {
+                categoryList.map((c) => (
+                    <Category key={c?.card?.card?.title} data={c?.card?.card}/>
+                    )
+                )
+            }
+
         </div>
     )
 }
