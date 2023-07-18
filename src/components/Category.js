@@ -1,15 +1,16 @@
 import { useState } from "react"
 import ItemList from "./ItemList"
 
-const Category = ({data}) => {
-    const [showsItem, setShowsItem] = useState(false)
+const Category = ({data, showsItem, setShowItem}) => {
+    // const [showsItem, setShowsItem] = useState(false)
 
     const handleItem = () => {
-        if (showsItem) {
-            setShowsItem(false)
-        } else {
-            setShowsItem(true)
-        }
+        setShowItem()
+        // if (showsItem) {
+        //     setShowsItem(false)
+        // } else {
+        //     setShowsItem(true)
+        // }
     }
     return (
         <div className="w-6/12 bg-gray-50 mx-auto shadow-lg p-4 text-left m-4">
