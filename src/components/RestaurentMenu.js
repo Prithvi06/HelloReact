@@ -24,6 +24,8 @@ const RestaurentMenu = () => {
     //     setResInfo(json.data.cards)
     // }
 
+    const [showsItem, setShowItem] = useState(1)
+
     if (resInfo?.length == 0) {
         return <Shimmer />
     }
@@ -36,8 +38,12 @@ const RestaurentMenu = () => {
         <div className="text-center">
             <h1 className="text-lg font-bold my-5">{name}</h1>
             {
-                categoryList.map((c) => (
-                    <Category key={c?.card?.card?.title} data={c?.card?.card}/>
+                categoryList.map((c, index) => (
+                    <Category key={c?.card?.card?.title} 
+                        data={c?.card?.card}
+                        showsItem={index === showsItem ? true : false}
+                        setShowItem={() => setShowItem(index)}
+                        />
                     )
                 )
             }
