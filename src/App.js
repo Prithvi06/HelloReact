@@ -8,15 +8,27 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurentMenu from "./components/RestaurentMenu";
-
+import UserContext from "./utils/UserContext";
+import { useState, useEffect } from "react";
 
 const AppLayout = () => {
+    const [userName, setUserName] = useState()
+
+    useEffect(() => {
+        const data = {
+            name: "Prithvi"
+        }
+        setUserName(data.name)
+    })
+
     return (
-        <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
+        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+            <div className="app">
+                <Header />
+                <Outlet />
+                <Footer />
+            </div>
+        </UserContext.Provider>
     );
 };
 
