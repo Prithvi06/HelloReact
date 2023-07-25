@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import header_logo from "../../header_logo.png"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
-    
+    const {loggedInUser} = useContext(UserContext)
+
     const onlineStatus = useOnlineStatus();
     return (
         <div className="header">
@@ -17,7 +19,7 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
+                    <li>Online Status: {onlineStatus ? loggedInUser : "🔴"}</li>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about"> About Us</Link></li>
                     <li><Link to={"/contact"}>Contact Us</Link></li>
