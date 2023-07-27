@@ -10,6 +10,9 @@ import Error from "./components/Error";
 import RestaurentMenu from "./components/RestaurentMenu";
 import UserContext from "./utils/UserContext";
 import { useState, useEffect } from "react";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+
 
 const AppLayout = () => {
     const [userName, setUserName] = useState()
@@ -19,16 +22,18 @@ const AppLayout = () => {
             name: "Prithvi"
         }
         setUserName(data.name)
-    })
+    }, [])
 
     return (
-        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
-            <div className="app">
-                <Header />
-                <Outlet />
-                <Footer />
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+                <div className="app">
+                    <Header />
+                    <Outlet />
+                    <Footer />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     );
 };
 

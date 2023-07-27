@@ -12,8 +12,7 @@ const Body = () => {
     const [filterRestaurent, setFilterRestaurent] = useState([])
     const [searchText, setSearchText] = useState("")
     
-    const {setUserName} = useContext(UserContext)
-
+    const {loggedInUser, setUserName} = useContext(UserContext)
     useEffect(()=>{
         fetchData();
     }, [])
@@ -23,8 +22,10 @@ const Body = () => {
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&page_type=DESKTOP_WEB_LISTING"
         );
         const jsonData = await data.json();
-        setRestaurentData(jsonData?.data?.cards[2]?.data?.data?.cards)
-        setFilterRestaurent(jsonData?.data?.cards[2]?.data?.data?.cards)
+        // setRestaurentData(jsonData?.data?.cards[2]?.data?.data?.cards)
+        // setFilterRestaurent(jsonData?.data?.cards[2]?.data?.data?.cards)
+        setRestaurentData(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilterRestaurent(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
     // if (restaurentData.length === 0){
@@ -61,13 +62,13 @@ const Body = () => {
                 </button>
             </div>
 
-            <input type="text" className="border border-black" onChange={(e) => setUserName(e.target.value)}/>
+            <input className="border border-black" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>
             
             <div className="res-container">
             {  
-                filterRestaurent.map((restaurent) => (
-                <Link to={"/restaurent/" + restaurent.data.id} key={restaurent.data.id}>
-                    { restaurent.data.promoted ? <RestaurentCardPromoted resData={restaurent}/> : <RestaurentCard resData={restaurent} />}
+                filterRestaurent?.map((restaurent) => (
+                <Link to={"/restaurent/" + restaurent.info.id} key={restaurent.info.id}>
+                    { restaurent.info.promoted ? <RestaurentCardPromoted resData={restaurent}/> : <RestaurentCard resData={restaurent} />}
                 </Link>
                 ))
             }    
