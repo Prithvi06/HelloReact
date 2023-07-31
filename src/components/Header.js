@@ -3,12 +3,16 @@ import header_logo from "../../header_logo.png"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     const {loggedInUser} = useContext(UserContext)
 
     const onlineStatus = useOnlineStatus();
+
+    const cartItem = useSelector((store) => store.cart.items)
+
     return (
         <div className="header">
             <div className="logo-container">
@@ -23,7 +27,7 @@ const Header = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about"> About Us</Link></li>
                     <li><Link to={"/contact"}>Contact Us</Link></li>
-                    <li>Cart</li>
+                    <li>Cart ({cartItem ? cartItem.length : 0} items)</li>
                     <button className="login-btn" onClick={() => { btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")} }>{btnName}</button>
                 </ul>
             </div>
